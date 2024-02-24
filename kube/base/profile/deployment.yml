@@ -20,6 +20,13 @@ spec:
         image: ghcr.io/thomas-mauran/linkedout/profile
         imagePullPolicy: Always
         env: []
+        securityContext:
+          runAsNonRoot: true
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop:
+              - ALL
         ports:
           - containerPort: 8085
             name: api
