@@ -16,8 +16,10 @@ RUN --mount=type=cache,target=/root/.gradle ./gradlew clean bootJar
 # Run stage
 FROM amazoncorretto:17-alpine AS run
 ARG SERVICE_NAME
+RUN addgroup -S linkedout && adduser -S linkedout -G linkedout
 WORKDIR /app
 
 COPY --from=build /app/$SERVICE_NAME/build/libs/$SERVICE_NAME.jar ./app.jar
 
+USER linkedout
 ENTRYPOINT ["java", "-jar", "./app.jar"]
