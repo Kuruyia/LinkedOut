@@ -9,6 +9,7 @@ jobs:
   build_push_backend:
     name: Build & push Docker image of the "${{ matrix.service }}" service
     uses: ./.github/workflows/flow_backend_build_push.yml
+    secrets: inherit
     strategy:
       matrix:
         service: [api_gateway, jobs, messaging, employer, notification, profile, recommendation]
