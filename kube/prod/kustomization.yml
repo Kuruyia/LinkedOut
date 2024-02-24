@@ -4,6 +4,7 @@ kind: Kustomization
 namespace: linkedout
 resources:
 - ../base
+- kyverno-policy.yml
 
 patches:
 - target:
