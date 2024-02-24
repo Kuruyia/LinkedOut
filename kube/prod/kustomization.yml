@@ -5,13 +5,9 @@ namespace: linkedout
 resources:
 - ../base
 - kyverno-policy.yml
+- network-policies.yml
 
 patches:
-- target:
-    group: networking.k8s.io
-    version: v1
-    kind: Ingress
-  path: api_gateway/configure-ingress.patch.yml
 - target:
     group: apps
     version: v1
@@ -22,6 +18,11 @@ patches:
     version: v1
     kind: Deployment
   path: add-resource-limits.patch.yml
+- target:
+    group: networking.k8s.io
+    version: v1
+    kind: Ingress
+  path: api_gateway/configure-ingress.patch.yml
 - target:
     group: apps
     version: v1
